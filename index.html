@@ -2,11 +2,13 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>SAMA | Plataforma SAMA</title>
+    <title>SAMA | Detalle del Ticket</title>
     <style>
         body { background: #0b0e14; color: white; font-family: sans-serif; padding: 20px; }
         .card-video { background: #161b22; padding: 20px; border-radius: 15px; margin-bottom: 20px; }
-        .ticket-card { background: #161b22; padding: 20px; border-radius: 12px; border-left: 5px solid #22d3ee; margin-top: 20px; }
+        .ticket-card { background: #161b22; padding: 20px; border-radius: 12px; border-left: 5px solid #22d3ee; margin-top: 20px; border: 1px solid #30363d; }
+        .ticket-desc { color: #cfd8dc; font-size: 0.95rem; margin: 15px 0; padding: 10px; background: #0d1117; border-radius: 5px; }
+        button { padding: 10px 20px; background: #6366f1; color: white; border: none; border-radius: 5px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -19,10 +21,17 @@
 
     <h2>Tickets de Requerimiento</h2>
     <div id="ticket-container">
-        <div class="ticket-card">
+        <div class="ticket-card" id="ticket-box">
             <h3 id="ticket-title">#104 - Optimizar conexión Base de Datos Oracle</h3>
-            <p id="status-text">Estado: Pendiente</p>
-            <button id="btn-resolver" onclick="resolver()">Resolver</button>
+            <p id="status-text" style="color: #94a3b8;">Estado: Pendiente</p>
+            
+            <!-- Aquí está el contenido técnico para tu pantallazo -->
+            <div class="ticket-desc">
+                <strong>Descripción del Problema:</strong><br>
+                El driver actual presenta latencia en la ejecución de consultas masivas a la base de datos de gestión veterinaria. Se requiere implementar un script en Node.js que utilice conexión mediante Pool para mejorar el tiempo de respuesta en un 30%.
+            </div>
+
+            <button id="btn-resolver" onclick="resolver()">Resolver Ticket</button>
         </div>
     </div>
 
@@ -30,11 +39,14 @@
         function resolver() {
             const btn = document.getElementById('btn-resolver');
             const status = document.getElementById('status-text');
+            const box = document.getElementById('ticket-box');
+            
             btn.innerText = "Procesando...";
             setTimeout(() => {
                 status.innerText = "Estado: Completado";
                 btn.innerText = "¡Ticket Resuelto!";
                 btn.style.backgroundColor = "#10b981";
+                box.style.borderLeft = "5px solid #10b981";
             }, 1000);
         }
     </script>
