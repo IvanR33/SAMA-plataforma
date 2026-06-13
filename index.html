@@ -2,36 +2,52 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>SAMA | Detalle del Ticket</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMA | Plataforma de Entrenamiento</title>
     <style>
-        body { background: #0b0e14; color: white; font-family: sans-serif; padding: 20px; }
-        .card-video { background: #161b22; padding: 20px; border-radius: 15px; margin-bottom: 20px; }
-        .ticket-card { background: #161b22; padding: 20px; border-radius: 12px; border-left: 5px solid #22d3ee; margin-top: 20px; border: 1px solid #30363d; }
-        .ticket-desc { color: #cfd8dc; font-size: 0.95rem; margin: 15px 0; padding: 10px; background: #0d1117; border-radius: 5px; }
-        button { padding: 10px 20px; background: #6366f1; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        body { background: #0b0e14; color: #e2e8f0; font-family: 'Segoe UI', Tahoma, sans-serif; padding: 40px; }
+        .header-section { margin-bottom: 30px; border-left: 4px solid #6366f1; padding-left: 20px; }
+        .module-card { background: #161b22; padding: 25px; border-radius: 15px; border: 1px solid #30363d; margin-bottom: 30px; }
+        .badge { background: #6366f1; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+        .ticket-card { background: #161b22; padding: 25px; border-radius: 12px; border-left: 5px solid #22d3ee; margin-top: 20px; border: 1px solid #30363d; }
+        .ticket-desc { color: #cfd8dc; background: #0d1117; padding: 15px; border-radius: 8px; margin: 15px 0; font-size: 0.95rem; }
+        button { padding: 12px 24px; background: #6366f1; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        button:hover { background: #4f46e5; }
+        textarea { width: 100%; box-sizing: border-box; background: #0d1117; color: #fff; border: 1px solid #30363d; padding: 12px; border-radius: 5px; margin-bottom: 15px; font-family: monospace; }
     </style>
 </head>
 <body>
-    <h1>SAMA Portal</h1>
-    
-    <div class="card-video">
-        <h3>Introducción a MongoDB</h3>
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/-bt_y4Loofg" frameborder="0" allowfullscreen></iframe>
+
+    <div class="header-section">
+        <h1>SAMA Portal: Ruta de Aprendizaje</h1>
+        <p>Semestre Autumn 2026 | Módulo: Gestión de Bases de Datos NoSQL</p>
     </div>
 
-    <h2>Tickets de Requerimiento</h2>
+    <div class="module-card">
+        <span class="badge">CÁPSULA DE MICRO-LEARNING #01</span>
+        <h2>Introducción técnica: Arquitectura MongoDB</h2>
+        <p>Parte del plan de estudio semanal. Objetivo: Comprender la estructura de documentos BSON.</p>
+        
+        <div style="margin-top: 20px;">
+            <iframe width="100%" height="400" src="https://www.youtube.com/embed/-bt_y4Loofg" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <h2>Ticket de Desafío Práctico</h2>
     <div id="ticket-container">
         <div class="ticket-card" id="ticket-box">
-            <h3 id="ticket-title">#104 - Optimizar conexión Base de Datos Oracle</h3>
-            <p id="status-text" style="color: #94a3b8;">Estado: Pendiente</p>
+            <h3 id="ticket-title">#104 - Optimización de Conexión (Oracle/Node.js)</h3>
+            <p id="status-text" style="color: #94a3b8;">Estado actual: Pendiente de resolución</p>
             
-            <!-- Aquí está el contenido técnico para tu pantallazo -->
             <div class="ticket-desc">
-                <strong>Descripción del Problema:</strong><br>
-                El driver actual presenta latencia en la ejecución de consultas masivas a la base de datos de gestión veterinaria. Se requiere implementar un script en Node.js que utilice conexión mediante Pool para mejorar el tiempo de respuesta en un 30%.
+                <strong>Requerimiento:</strong> Optimizar la latencia en la ejecución de consultas masivas.<br>
+                <strong>Entregable:</strong> Script de conexión mediante Pool en Node.js.
             </div>
 
-            <button id="btn-resolver" onclick="resolver()">Resolver Ticket</button>
+            <textarea id="solucion-input" rows="4" placeholder="Escribe aquí tu script de solución en Node.js..."></textarea>
+            
+            <br>
+            <button id="btn-resolver" onclick="resolver()">Resolver Desafío</button>
         </div>
     </div>
 
@@ -40,13 +56,22 @@
             const btn = document.getElementById('btn-resolver');
             const status = document.getElementById('status-text');
             const box = document.getElementById('ticket-box');
+            const input = document.getElementById('solucion-input');
             
-            btn.innerText = "Procesando...";
+            if(input.value.trim() === "") {
+                alert("Por favor, ingresa tu código de solución antes de resolver.");
+                return;
+            }
+
+            btn.innerText = "Procesando cambios...";
+            btn.disabled = true;
+            
             setTimeout(() => {
-                status.innerText = "Estado: Completado";
-                btn.innerText = "¡Ticket Resuelto!";
+                status.innerText = "Estado actual: Completado";
+                btn.innerText = "¡Desafío Finalizado!";
                 btn.style.backgroundColor = "#10b981";
                 box.style.borderLeft = "5px solid #10b981";
+                input.disabled = true;
             }, 1000);
         }
     </script>
