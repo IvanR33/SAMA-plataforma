@@ -1,16 +1,13 @@
-const tickets = [
-    { id: 104, title: "Refactorizar conexión DB", status: "Pendiente" },
-    { id: 105, title: "Optimizar Query Oracle", status: "En Progreso" }
-];
+const ticketContainer = document.getElementById('ticket-container');
+// Solo un ticket para tu ejemplo pragmático
+const ticket = { id: 104, title: "Optimizar conexión Base de Datos Oracle", status: "Pendiente" };
 
-const container = document.getElementById('ticket-container');
-
-tickets.forEach(ticket => {
-    container.innerHTML += `
-        <div class="card" style="border-left-color: #fbbf24;">
-            <h3>Ticket #${ticket.id}</h3>
-            <p>${ticket.title}</p>
-            <button onclick="alert('Iniciando ticket...')">Resolver</button>
+ticketContainer.innerHTML = `
+    <div class="ticket-card">
+        <div>
+            <h3 style="margin:0">#${ticket.id} - ${ticket.title}</h3>
+            <small style="color: #94a3b8;">Estado: ${ticket.status}</small>
         </div>
-    `;
-});
+        <button style="padding: 10px 20px; background: #6366f1; color: white; border: none; border-radius: 5px; cursor: pointer;">Resolver</button>
+    </div>
+`;
